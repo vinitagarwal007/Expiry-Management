@@ -21,10 +21,9 @@ namespace Expiry_Management
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(Application.StartupPath);
-            if (!File.Exists("hello.db"))
+           if (!File.Exists("hello.db"))
             {
-                MessageBox.Show("vint");
+                
                 SQLiteConnection.CreateFile("hello.db");
                 var inicon = new SQLiteConnection("Data Source = hello.db");
                 inicon.Open();
