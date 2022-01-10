@@ -285,6 +285,7 @@
             this.partyname.Name = "partyname";
             this.partyname.Size = new System.Drawing.Size(290, 26);
             this.partyname.TabIndex = 1;
+            this.partyname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partyname_KeyPress);
             // 
             // itemname
             // 
@@ -298,6 +299,7 @@
             this.itemname.Name = "itemname";
             this.itemname.Size = new System.Drawing.Size(290, 26);
             this.itemname.TabIndex = 2;
+            this.itemname.Enter += new System.EventHandler(this.itemname_Enter);
             // 
             // mrp
             // 

@@ -24,7 +24,8 @@ namespace Expiry_Management
         String command;
         long lastslno;
         List<string> voucheridlist = new List<string>();
-        public string sharedvoucherid = "";
+        public string sharedvoucherid ="";
+        public Boolean toupdateparty=false;
         private void Form1_Load(object sender, EventArgs e)
         {
             //if (!File.Exists("data.db"))
@@ -80,23 +81,38 @@ namespace Expiry_Management
             {
                 voucherid.Text = sharedvoucherid;
             }
-
-            command = "select * from data where id =" + voucherid.Text;
+            if (toupdateparty)
+            {
+                savebtn.BackColor = Color.LimeGreen;
+                savebtn.Text = "Save";
+            }
+            command = "select date,partyname from data where id ="+ voucherid.Text+";";
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                datetime.Value = Convert.ToDateTime(reader.GetString(1));
-                partyname.Text = reader.GetString(2);
+                datetime.Value = Convert.ToDateTime(reader.GetString(0));
+                partyname.Text = reader.GetString(1);
             }
             refreshdgv();
             autocompletesetup();
         }
         private void savebtn_Click(object sender, EventArgs e)
         {
+            if (toupdateparty)
+            {
+                savebtn.Text = "Reset";
+                savebtn.BackColor = Color.IndianRed;
+                command = "update data set partyname = '" + partyname.Text + "' where id = " + voucherid.Text + ";";
+                cmd = new SQLiteCommand(command, con);
+                reader = cmd.ExecuteReader();
+                toupdateparty = false;
+                sharedvoucherid = "";
+            }
             setup();
             clear();
             dgv.Rows.Clear();
+            partyname.ReadOnly = false;
         }
 
 
@@ -169,11 +185,11 @@ namespace Expiry_Management
                 command = "update data set id =" + voucherid.Text + ",date =\"" + datetime.Value.ToString("dd-MM-yyyy") + "\",partyname =\"" + partyname.Text + "\",itemname=\"" + itemname.Text + "\",mrp =" + mrp.Text + ",qty =" + qty.Text + ",sdate =\"" + sdate.Value.ToString("dd-MM-yyyy") + "\",samt = " + samt.Text + " where slno = \"" + voucheridlist[currentcell] + "\";";
                 cmd = new SQLiteCommand(command, con);
                 var output = cmd.ExecuteNonQuery();
+
                 toupdate = false;
                 MessageBox.Show(String.Format("{0} entry was updated", Convert.ToString(output)));
                 cancelbtn.Text = "Add";
             }
-
             refreshdgv();
         }
         private Boolean validate()
@@ -304,6 +320,22 @@ namespace Expiry_Management
             samt.Text = dgv.Rows[currentcell].Cells[5].Value.ToString();
             cancelbtn.Text = "Update";
             toupdate = true;
+        }
+
+        private void itemname_Enter(object sender, EventArgs e)
+        {
+            if(partyname.Text.Trim() != "")
+            {
+                partyname.ReadOnly = true;
+            }
+        }
+
+        private void partyname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(partyname.Enabled == false)
+            {
+                MessageBox.Show("Please reset the page for a new entry");
+            }
         }
     }
 }

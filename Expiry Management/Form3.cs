@@ -156,6 +156,31 @@ namespace Expiry_Management
 
         private void fromdate_CloseUp(object sender, EventArgs e)
         {
+            List<string> list = new List<string>();
+            DateTime fdate = fromdate.Value;
+            DateTime tdate = todate.Value;
+            if(tdate < fdate)
+            {
+                todate.Value = fromdate.Value;
+            }
+            for (var dt = fdate; dt <= tdate.AddDays(1); dt = dt.AddDays(1))
+            {
+                list.Add(dt.ToString("dd-MM-yyyy"));
+            }
+
+
+            dataGridView1.Rows.Clear();
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id;";
+            cmd = new SQLiteCommand(command, con);
+            reader = cmd.ExecuteReader();
+            int sl = 1;
+            while (reader.Read())
+            {
+                if (list.Contains(reader.GetString(2)))
+                {
+                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+                }
+            }
 
         }
 
@@ -255,6 +280,12 @@ namespace Expiry_Management
             range.Columns.AutoFit();
             exapp.Visible = true;
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            dataGridView1.Rows[e.RowIndex].Selected = true;
         }
     }
 }

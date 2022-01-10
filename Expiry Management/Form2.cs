@@ -91,13 +91,17 @@ namespace Expiry_Management
             f2.Show();
             f2.setup();
         }
-        private void validate()
+        public void voucheredit(String id)
         {
-
+            f1 = new Form1();
+            f1.TopLevel = false;
+            f1.sharedvoucherid = id;
+            f1.toupdateparty = true;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(f1);
+            f1.Show();
+            f1.setup();
         }
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
 
-        }
     }
 }
