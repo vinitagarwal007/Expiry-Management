@@ -31,7 +31,7 @@ namespace Expiry_Management
             //if (!File.Exists("data.db"))
             //{
             //    SQLiteConnection.CreateFile("data.db");
-            //    var inicon = new SQLiteConnection("Data Source = data.db");
+            //    var inicon = new SQLiteConnection("Data Source = " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
             //    inicon.Open();
             //    var inicommand = @"CREATE TABLE data(
             //                    id        INT(100)     NOT NULL,
@@ -67,7 +67,7 @@ namespace Expiry_Management
         }
         public void setup()
         {
-            con = new SQLiteConnection("Data Source = data.db");
+            con = new SQLiteConnection("Data Source = " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
             con.Open();
             command = "select * from config;";
             cmd = new SQLiteCommand(command, con);

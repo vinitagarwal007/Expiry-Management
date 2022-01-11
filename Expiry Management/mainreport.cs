@@ -33,7 +33,7 @@ namespace Expiry_Management
             comboBox1.Items.Add("Voucher Id");
             comboBox1.Items.Add("Amount");
             comboBox1.Items.Add("Item Name");
-            con = new SQLiteConnection("Data Source = data.db");
+            con = new SQLiteConnection("Data Source = " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
             con.Open();
             //command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id having tsum != tsamt;";
             //cmd = new SQLiteCommand(command, con);

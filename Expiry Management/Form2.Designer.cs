@@ -61,6 +61,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(1317, 33);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // homeToolStripMenuItem
             // 
@@ -102,7 +103,7 @@
             // importItemListToolStripMenuItem
             // 
             this.importItemListToolStripMenuItem.Name = "importItemListToolStripMenuItem";
-            this.importItemListToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.importItemListToolStripMenuItem.Size = new System.Drawing.Size(244, 34);
             this.importItemListToolStripMenuItem.Text = "Import Item List";
             this.importItemListToolStripMenuItem.Click += new System.EventHandler(this.importItemListToolStripMenuItem_Click);
             // 

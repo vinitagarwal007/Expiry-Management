@@ -34,10 +34,14 @@ namespace Expiry_Management
         private void Form2_Load(object sender, EventArgs e)
 
         {
-            if (!File.Exists("data.db"))
+            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db"))
             {
-                SQLiteConnection.CreateFile("data.db");
-                var inicon = new SQLiteConnection("Data Source = data.db");
+                if(!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management"))
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management");
+                }
+                SQLiteConnection.CreateFile(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
+                var inicon = new SQLiteConnection("Data Source = " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
                 inicon.Open();
                 var inicommand = @"CREATE TABLE data(
                                 id        INT(100)     NOT NULL,
@@ -103,7 +107,7 @@ namespace Expiry_Management
             panel1.Controls.Clear();
             panel1.Controls.Add(f1);
             f1.Show();
-            f1.setup(); 
+            f1.setup();
             this.Text = "Voucher Editing";
         }
 
@@ -119,6 +123,11 @@ namespace Expiry_Management
             import import = new import();
             import.isitemname = true;
             import.ShowDialog();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

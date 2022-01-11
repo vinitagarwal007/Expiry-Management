@@ -34,7 +34,7 @@ namespace Expiry_Management
             {
                 pictureBox1.Image = Expiry_Management.Properties.Resources.importlayout;
             }
-            con = new SQLiteConnection("Data Source = data.db");
+            con = new SQLiteConnection("Data Source = " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
             con.Open();
         }
 

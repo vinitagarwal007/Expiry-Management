@@ -24,11 +24,10 @@ namespace Expiry_Management
         public string sharedvoucherid = "";
         private void reportdialog_Load(object sender, EventArgs e)
         {
-            con = new SQLiteConnection("Data Source = data.db");
+            con = new SQLiteConnection("Data Source = " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
             con.Open();
             dgv.Rows.Clear();
             command = "select * from data where id ='" + sharedvoucherid +"';";
-            MessageBox.Show(command);
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             int sl = 1;
