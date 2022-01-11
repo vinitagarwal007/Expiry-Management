@@ -32,6 +32,7 @@ namespace Expiry_Management
             comboBox1.Items.Add("Date");
             comboBox1.Items.Add("Voucher Id");
             comboBox1.Items.Add("Amount");
+            comboBox1.Items.Add("Item Name");
             con = new SQLiteConnection("Data Source = data.db");
             con.Open();
             //command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id having tsum != tsamt;";
@@ -74,6 +75,7 @@ namespace Expiry_Management
             {
                 vouchersearch.Visible = false;
             }
+
             if(comboBox1.SelectedIndex == 3)
             {
                 minamt.Visible = true;
@@ -85,6 +87,14 @@ namespace Expiry_Management
                 minamt.Visible = false;
                 maxamt.Visible = false;
                 amtlable.Visible = false;
+            }
+            if (comboBox1.SelectedIndex == 4)
+            {
+                Itemnamesearchbox.Visible = true;
+            }
+            else
+            {
+                Itemnamesearchbox.Visible = false;
             }
             dataGridView1.Rows.Clear();
             command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id having tsum != tsamt;";
@@ -193,7 +203,6 @@ namespace Expiry_Management
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value));
            Program.form.voucheredit(Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value));
         }
 
@@ -201,6 +210,19 @@ namespace Expiry_Management
         {
             dataGridView1.ClearSelection();
             dataGridView1.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void Itemnamesearchbox_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data where itemname like '%"+Itemnamesearchbox.Text.Trim()+"%' group by id having tsum != tsamt;";
+            cmd = new SQLiteCommand(command, con);
+            reader = cmd.ExecuteReader();
+            int sl = 1;
+            while (reader.Read())
+            { 
+                dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+            }
         }
     }
 }

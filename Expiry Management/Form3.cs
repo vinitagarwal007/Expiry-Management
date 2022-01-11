@@ -32,6 +32,7 @@ namespace Expiry_Management
             comboBox1.Items.Add("Date");
             comboBox1.Items.Add("Voucher Id");
             comboBox1.Items.Add("Amount");
+            comboBox1.Items.Add("Item Name");
             con = new SQLiteConnection("Data Source = data.db");
             con.Open();
             //command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id having tsum != tsamt;";
@@ -85,6 +86,14 @@ namespace Expiry_Management
                 minamt.Visible = false;
                 maxamt.Visible = false;
                 amtlable.Visible = false;
+            }
+            if (comboBox1.SelectedIndex == 4)
+            {
+                itemnamesearchbox.Visible = true;
+            }
+            else
+            {
+                itemnamesearchbox.Visible = false;
             }
             dataGridView1.Rows.Clear();
             command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id;";
@@ -286,6 +295,26 @@ namespace Expiry_Management
         {
             dataGridView1.ClearSelection();
             dataGridView1.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void itemnamesearchbox_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data where itemname like '%" + itemnamesearchbox.Text.Trim() + "%' group by id;";
+            cmd = new SQLiteCommand(command, con);
+            reader = cmd.ExecuteReader();
+            int sl = 1;
+            while (reader.Read())
+            {
+                dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+            }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            reportdialog reportdialog = new reportdialog();
+            reportdialog.sharedvoucherid = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+            reportdialog.ShowDialog();
         }
     }
 }

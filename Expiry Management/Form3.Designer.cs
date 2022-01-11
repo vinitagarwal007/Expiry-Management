@@ -48,6 +48,7 @@
             this.fromdate = new System.Windows.Forms.DateTimePicker();
             this.datelabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.itemnamesearchbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -104,6 +105,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(1293, 422);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
             // Column1
             // 
@@ -264,11 +268,22 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // itemnamesearchbox
+            // 
+            this.itemnamesearchbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemnamesearchbox.Location = new System.Drawing.Point(349, 11);
+            this.itemnamesearchbox.Name = "itemnamesearchbox";
+            this.itemnamesearchbox.Size = new System.Drawing.Size(897, 32);
+            this.itemnamesearchbox.TabIndex = 24;
+            this.itemnamesearchbox.Visible = false;
+            this.itemnamesearchbox.TextChanged += new System.EventHandler(this.itemnamesearchbox_TextChanged);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1309, 483);
+            this.Controls.Add(this.itemnamesearchbox);
             this.Controls.Add(this.amtlable);
             this.Controls.Add(this.minamt);
             this.Controls.Add(this.maxamt);
@@ -313,5 +328,6 @@
         private System.Windows.Forms.DateTimePicker fromdate;
         private System.Windows.Forms.Label datelabel;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox itemnamesearchbox;
     }
 }

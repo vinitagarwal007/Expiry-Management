@@ -70,6 +70,7 @@ namespace Expiry_Management
                 inicon.Close();
             }
             homeToolStripMenuItem.PerformClick();
+            this.Text = "Expiry Manager";
         }
 
         private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,6 +81,7 @@ namespace Expiry_Management
             panel1.Controls.Add(f3);
             f3.Show();
             f3.setup();
+            this.Text = "Reports";
         }
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,6 +92,7 @@ namespace Expiry_Management
             panel1.Controls.Add(f2);
             f2.Show();
             f2.setup();
+            this.Text = "Expiry Manager";
         }
         public void voucheredit(String id)
         {
@@ -100,8 +103,22 @@ namespace Expiry_Management
             panel1.Controls.Clear();
             panel1.Controls.Add(f1);
             f1.Show();
-            f1.setup();
+            f1.setup(); 
+            this.Text = "Voucher Editing";
         }
 
+        private void importPartyListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            import import = new import();
+            import.ispartyname = true;
+            import.ShowDialog();
+        }
+
+        private void importItemListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            import import = new import();
+            import.isitemname = true;
+            import.ShowDialog();
+        }
     }
 }

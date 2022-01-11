@@ -281,7 +281,7 @@ namespace Expiry_Management
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(String.Format("Are you sure you want to delete entry no. {0}", voucheridlist[currentcell]), "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Are you sure you want to delete entry", "Confirmation", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 command = "delete from data where slno = '" + voucheridlist[currentcell] + "';";
@@ -336,6 +336,20 @@ namespace Expiry_Management
             {
                 MessageBox.Show("Please reset the page for a new entry");
             }
+        }
+
+        private void partyname_Leave(object sender, EventArgs e)
+        {
+            command = "insert into partylist select '"+partyname.Text.Trim()+"' where not exists(select * from partylist where name = '"+partyname.Text.Trim()+"');";
+            cmd = new SQLiteCommand(command,con);
+            cmd.ExecuteNonQuery();
+        }
+
+        private void itemname_Leave(object sender, EventArgs e)
+        {
+            command = "insert into itemlist select '" + itemname.Text.Trim() + "' where not exists(select * from itemlist where name = '" + itemname.Text.Trim() + "');";
+            cmd = new SQLiteCommand(command, con);
+            cmd.ExecuteNonQuery();
         }
     }
 }

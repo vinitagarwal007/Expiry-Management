@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1317, 33);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
-
             // 
             // homeToolStripMenuItem
             // 
@@ -95,14 +95,16 @@
             // importPartyListToolStripMenuItem
             // 
             this.importPartyListToolStripMenuItem.Name = "importPartyListToolStripMenuItem";
-            this.importPartyListToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.importPartyListToolStripMenuItem.Size = new System.Drawing.Size(244, 34);
             this.importPartyListToolStripMenuItem.Text = "Import Party List";
+            this.importPartyListToolStripMenuItem.Click += new System.EventHandler(this.importPartyListToolStripMenuItem_Click);
             // 
             // importItemListToolStripMenuItem
             // 
             this.importItemListToolStripMenuItem.Name = "importItemListToolStripMenuItem";
             this.importItemListToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.importItemListToolStripMenuItem.Text = "Import Item List";
+            this.importItemListToolStripMenuItem.Click += new System.EventHandler(this.importItemListToolStripMenuItem_Click);
             // 
             // Form2
             // 
@@ -111,7 +113,10 @@
             this.ClientSize = new System.Drawing.Size(1317, 525);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);

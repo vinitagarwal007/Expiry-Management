@@ -47,6 +47,7 @@
             this.fromdate = new System.Windows.Forms.DateTimePicker();
             this.todate = new System.Windows.Forms.DateTimePicker();
             this.datelabel = new System.Windows.Forms.Label();
+            this.Itemnamesearchbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -252,11 +253,22 @@
             this.datelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.datelabel.Visible = false;
             // 
+            // Itemnamesearchbox
+            // 
+            this.Itemnamesearchbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Itemnamesearchbox.Location = new System.Drawing.Point(348, 8);
+            this.Itemnamesearchbox.Name = "Itemnamesearchbox";
+            this.Itemnamesearchbox.Size = new System.Drawing.Size(948, 32);
+            this.Itemnamesearchbox.TabIndex = 12;
+            this.Itemnamesearchbox.Visible = false;
+            this.Itemnamesearchbox.TextChanged += new System.EventHandler(this.Itemnamesearchbox_TextChanged);
+            // 
             // mainreport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1309, 483);
+            this.Controls.Add(this.Itemnamesearchbox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
@@ -298,5 +310,6 @@
         private System.Windows.Forms.DateTimePicker fromdate;
         private System.Windows.Forms.DateTimePicker todate;
         private System.Windows.Forms.Label datelabel;
+        private System.Windows.Forms.TextBox Itemnamesearchbox;
     }
 }
