@@ -135,11 +135,14 @@ namespace Expiry_Management
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             col = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection col2 = new AutoCompleteStringCollection();
             while (reader.Read())
             {
                 col.Add(reader.GetString(0));
+                col2.Add(reader.GetString(1));
             }
             itemname.AutoCompleteCustomSource = col;
+            Company.AutoCompleteCustomSource = col2;
         }
         private void refreshdgv()
         {
@@ -152,7 +155,7 @@ namespace Expiry_Management
             while (reader.Read())
             {
                 voucheridlist.Add(reader.GetString(8));
-                dgv.Rows.Add(sl, reader.GetString(3), reader.GetDecimal(4), reader.GetInt64(5), reader.GetString(6), reader.GetDecimal(7));
+                dgv.Rows.Add(sl, reader.GetString(3), reader.GetDecimal(4), reader.GetInt64(5), reader.GetString(6), reader.GetDecimal(7),reader.GetString(9));
                 sl++;
             }
 
@@ -161,7 +164,7 @@ namespace Expiry_Management
         {
             if (!toupdate)
             {
-                command = "insert into data values(" + voucherid.Text + ",\"" + datetime.Value.ToString("dd-MM-yyyy") + "\",\"" + partyname.Text + "\",\"" + itemname.Text + "\"," + mrp.Text + "," + qty.Text + ",\"" + sdate.Value.ToString("dd-MM-yyyy") + "\"," + samt.Text + ",\"" + lastslno + "\")";
+                command = "insert into data values(" + voucherid.Text + ",\"" + datetime.Value.ToString("dd-MM-yyyy") + "\",\"" + partyname.Text + "\",\"" + itemname.Text + "\"," + mrp.Text + "," + qty.Text + ",\"" + sdate.Value.ToString("dd-MM-yyyy") + "\"," + samt.Text + ",\"" + lastslno + "\",\""+Company.Text.Trim()+"\")";
                 cmd = new SQLiteCommand(command, con);
                 cmd.ExecuteNonQuery();
 
@@ -182,7 +185,7 @@ namespace Expiry_Management
             }
             else
             {
-                command = "update data set id =" + voucherid.Text + ",date =\"" + datetime.Value.ToString("dd-MM-yyyy") + "\",partyname =\"" + partyname.Text + "\",itemname=\"" + itemname.Text + "\",mrp =" + mrp.Text + ",qty =" + qty.Text + ",sdate =\"" + sdate.Value.ToString("dd-MM-yyyy") + "\",samt = " + samt.Text + " where slno = \"" + voucheridlist[currentcell] + "\";";
+                command = "update data set id =" + voucherid.Text + ",date =\"" + datetime.Value.ToString("dd-MM-yyyy") + "\",partyname =\"" + partyname.Text + "\",itemname=\"" + itemname.Text + "\",company=\""+Company.Text.Trim()+"\",mrp =" + mrp.Text + ",qty =" + qty.Text + ",sdate =\"" + sdate.Value.ToString("dd-MM-yyyy") + "\",samt = " + samt.Text + " where slno = \"" + voucheridlist[currentcell] + "\";";
                 cmd = new SQLiteCommand(command, con);
                 var output = cmd.ExecuteNonQuery();
 
@@ -237,7 +240,6 @@ namespace Expiry_Management
             {
                 textBox.Text = "0";
             }
-            amt.Text = Convert.ToString(Convert.ToDecimal(mrp.Text.Trim()) * Convert.ToDecimal(qty.Text.Trim()));
         }
 
         private void samt_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -315,7 +317,6 @@ namespace Expiry_Management
             itemname.Text = dgv.Rows[currentcell].Cells[1].Value.ToString();
             mrp.Text = dgv.Rows[currentcell].Cells[2].Value.ToString();
             qty.Text = dgv.Rows[currentcell].Cells[3].Value.ToString();
-            amt.Text = Convert.ToString(Convert.ToDecimal(mrp.Text.Trim()) * Convert.ToDecimal(qty.Text.Trim()));
             sdate.Value = Convert.ToDateTime(dgv.Rows[currentcell].Cells[4].Value.ToString());
             samt.Text = dgv.Rows[currentcell].Cells[5].Value.ToString();
             cancelbtn.Text = "Update";
@@ -347,9 +348,20 @@ namespace Expiry_Management
 
         private void itemname_Leave(object sender, EventArgs e)
         {
-            command = "insert into itemlist select '" + itemname.Text.Trim() + "' where not exists(select * from itemlist where name = '" + itemname.Text.Trim() + "');";
+            command = "insert into itemlist select '" + itemname.Text.Trim() + "','" + Company.Text.Trim() + "' where not exists(select * from itemlist where name = '" + itemname.Text.Trim() + "');";
             cmd = new SQLiteCommand(command, con);
             cmd.ExecuteNonQuery();
+        }
+
+        private void itemname_TextChanged(object sender, EventArgs e)
+        {
+            command = "select company from itemlist where name = '" + itemname.Text.Trim() + "';";
+            cmd = new SQLiteCommand(command, con);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Company.Text = reader.GetString(0);
+            }
         }
     }
 }

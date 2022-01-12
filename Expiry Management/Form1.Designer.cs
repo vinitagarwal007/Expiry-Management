@@ -35,16 +35,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.dgvsl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvsettledate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvsettleamount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,12 +47,20 @@
             this.itemname = new System.Windows.Forms.TextBox();
             this.mrp = new System.Windows.Forms.TextBox();
             this.qty = new System.Windows.Forms.TextBox();
-            this.amt = new System.Windows.Forms.TextBox();
             this.samt = new System.Windows.Forms.TextBox();
             this.datetime = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.voucherid = new System.Windows.Forms.Label();
             this.sdate = new System.Windows.Forms.DateTimePicker();
+            this.Company = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dgvsl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvsettledate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvsettleamount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -98,7 +99,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Rockwell", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 179);
+            this.label4.Location = new System.Drawing.Point(9, 215);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 25);
             this.label4.TabIndex = 3;
@@ -108,21 +109,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Rockwell", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 216);
+            this.label5.Location = new System.Drawing.Point(9, 253);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 25);
             this.label5.TabIndex = 4;
             this.label5.Text = "Qty   ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Rockwell", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 256);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 25);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Amount ";
             // 
             // label7
             // 
@@ -163,7 +154,8 @@
             this.dgvmrp,
             this.dgvqty,
             this.dgvsettledate,
-            this.dgvsettleamount});
+            this.dgvsettleamount,
+            this.Column1});
             this.dgv.ContextMenuStrip = this.contextMenuStrip1;
             this.dgv.Location = new System.Drawing.Point(463, 10);
             this.dgv.MultiSelect = false;
@@ -176,54 +168,6 @@
             this.dgv.TabIndex = 8;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             this.dgv.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseUp);
-            // 
-            // dgvsl
-            // 
-            this.dgvsl.FillWeight = 10F;
-            this.dgvsl.HeaderText = "Sl.";
-            this.dgvsl.MinimumWidth = 8;
-            this.dgvsl.Name = "dgvsl";
-            this.dgvsl.ReadOnly = true;
-            // 
-            // dgvitem
-            // 
-            this.dgvitem.FillWeight = 50F;
-            this.dgvitem.HeaderText = "Item";
-            this.dgvitem.MinimumWidth = 8;
-            this.dgvitem.Name = "dgvitem";
-            this.dgvitem.ReadOnly = true;
-            // 
-            // dgvmrp
-            // 
-            this.dgvmrp.FillWeight = 15F;
-            this.dgvmrp.HeaderText = "MRP";
-            this.dgvmrp.MinimumWidth = 8;
-            this.dgvmrp.Name = "dgvmrp";
-            this.dgvmrp.ReadOnly = true;
-            // 
-            // dgvqty
-            // 
-            this.dgvqty.FillWeight = 15F;
-            this.dgvqty.HeaderText = "QTY";
-            this.dgvqty.MinimumWidth = 8;
-            this.dgvqty.Name = "dgvqty";
-            this.dgvqty.ReadOnly = true;
-            // 
-            // dgvsettledate
-            // 
-            this.dgvsettledate.FillWeight = 20F;
-            this.dgvsettledate.HeaderText = "Settle Date";
-            this.dgvsettledate.MinimumWidth = 8;
-            this.dgvsettledate.Name = "dgvsettledate";
-            this.dgvsettledate.ReadOnly = true;
-            // 
-            // dgvsettleamount
-            // 
-            this.dgvsettleamount.FillWeight = 20F;
-            this.dgvsettleamount.HeaderText = "Settle Amt.";
-            this.dgvsettleamount.MinimumWidth = 8;
-            this.dgvsettleamount.Name = "dgvsettleamount";
-            this.dgvsettleamount.ReadOnly = true;
             // 
             // contextMenuStrip1
             // 
@@ -284,7 +228,7 @@
             this.partyname.Location = new System.Drawing.Point(143, 87);
             this.partyname.Name = "partyname";
             this.partyname.Size = new System.Drawing.Size(290, 26);
-            this.partyname.TabIndex = 1;
+            this.partyname.TabIndex = 0;
             this.partyname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partyname_KeyPress);
             this.partyname.Leave += new System.EventHandler(this.partyname_Leave);
             // 
@@ -299,13 +243,13 @@
             this.itemname.Location = new System.Drawing.Point(143, 144);
             this.itemname.Name = "itemname";
             this.itemname.Size = new System.Drawing.Size(290, 26);
-            this.itemname.TabIndex = 2;
+            this.itemname.TabIndex = 1;
+            this.itemname.TextChanged += new System.EventHandler(this.itemname_TextChanged);
             this.itemname.Enter += new System.EventHandler(this.itemname_Enter);
-            this.itemname.Leave += new System.EventHandler(this.itemname_Leave);
             // 
             // mrp
             // 
-            this.mrp.Location = new System.Drawing.Point(143, 181);
+            this.mrp.Location = new System.Drawing.Point(143, 217);
             this.mrp.Name = "mrp";
             this.mrp.Size = new System.Drawing.Size(290, 26);
             this.mrp.TabIndex = 3;
@@ -315,7 +259,7 @@
             // 
             // qty
             // 
-            this.qty.Location = new System.Drawing.Point(143, 218);
+            this.qty.Location = new System.Drawing.Point(143, 255);
             this.qty.Name = "qty";
             this.qty.Size = new System.Drawing.Size(290, 26);
             this.qty.TabIndex = 4;
@@ -323,21 +267,12 @@
             this.qty.TextChanged += new System.EventHandler(this.mrp_TextChanged);
             this.qty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mrp_KeyPress);
             // 
-            // amt
-            // 
-            this.amt.Location = new System.Drawing.Point(143, 258);
-            this.amt.Name = "amt";
-            this.amt.Size = new System.Drawing.Size(290, 26);
-            this.amt.TabIndex = 5;
-            this.amt.Text = "0";
-            this.amt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mrp_KeyPress);
-            // 
             // samt
             // 
             this.samt.Location = new System.Drawing.Point(143, 334);
             this.samt.Name = "samt";
             this.samt.Size = new System.Drawing.Size(290, 26);
-            this.samt.TabIndex = 7;
+            this.samt.TabIndex = 6;
             this.samt.Text = "0";
             this.samt.TextChanged += new System.EventHandler(this.mrp_TextChanged);
             this.samt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mrp_KeyPress);
@@ -381,19 +316,100 @@
             this.sdate.Location = new System.Drawing.Point(143, 294);
             this.sdate.Name = "sdate";
             this.sdate.Size = new System.Drawing.Size(290, 26);
-            this.sdate.TabIndex = 6;
+            this.sdate.TabIndex = 5;
+            // 
+            // Company
+            // 
+            this.Company.AutoCompleteCustomSource.AddRange(new string[] {
+            "sa",
+            "vinit",
+            "ankit"});
+            this.Company.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Company.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.Company.Location = new System.Drawing.Point(142, 180);
+            this.Company.Name = "Company";
+            this.Company.Size = new System.Drawing.Size(290, 26);
+            this.Company.TabIndex = 2;
+            this.Company.Leave += new System.EventHandler(this.itemname_Leave);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Rockwell", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(8, 178);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(124, 25);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Comapany";
+            // 
+            // dgvsl
+            // 
+            this.dgvsl.FillWeight = 10F;
+            this.dgvsl.HeaderText = "Sl.";
+            this.dgvsl.MinimumWidth = 8;
+            this.dgvsl.Name = "dgvsl";
+            this.dgvsl.ReadOnly = true;
+            // 
+            // dgvitem
+            // 
+            this.dgvitem.FillWeight = 50F;
+            this.dgvitem.HeaderText = "Item";
+            this.dgvitem.MinimumWidth = 8;
+            this.dgvitem.Name = "dgvitem";
+            this.dgvitem.ReadOnly = true;
+            // 
+            // dgvmrp
+            // 
+            this.dgvmrp.FillWeight = 15F;
+            this.dgvmrp.HeaderText = "MRP";
+            this.dgvmrp.MinimumWidth = 8;
+            this.dgvmrp.Name = "dgvmrp";
+            this.dgvmrp.ReadOnly = true;
+            // 
+            // dgvqty
+            // 
+            this.dgvqty.FillWeight = 15F;
+            this.dgvqty.HeaderText = "QTY";
+            this.dgvqty.MinimumWidth = 8;
+            this.dgvqty.Name = "dgvqty";
+            this.dgvqty.ReadOnly = true;
+            // 
+            // dgvsettledate
+            // 
+            this.dgvsettledate.FillWeight = 20F;
+            this.dgvsettledate.HeaderText = "Settle Date";
+            this.dgvsettledate.MinimumWidth = 8;
+            this.dgvsettledate.Name = "dgvsettledate";
+            this.dgvsettledate.ReadOnly = true;
+            // 
+            // dgvsettleamount
+            // 
+            this.dgvsettleamount.FillWeight = 20F;
+            this.dgvsettleamount.HeaderText = "Settle Amt.";
+            this.dgvsettleamount.MinimumWidth = 8;
+            this.dgvsettleamount.Name = "dgvsettleamount";
+            this.dgvsettleamount.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 20F;
+            this.Column1.HeaderText = "Company";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1309, 483);
+            this.Controls.Add(this.Company);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.sdate);
             this.Controls.Add(this.voucherid);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.datetime);
             this.Controls.Add(this.samt);
-            this.Controls.Add(this.amt);
             this.Controls.Add(this.qty);
             this.Controls.Add(this.mrp);
             this.Controls.Add(this.itemname);
@@ -403,7 +419,6 @@
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -427,7 +442,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dgv;
@@ -437,21 +451,23 @@
         private System.Windows.Forms.TextBox itemname;
         private System.Windows.Forms.TextBox mrp;
         private System.Windows.Forms.TextBox qty;
-        private System.Windows.Forms.TextBox amt;
         private System.Windows.Forms.TextBox samt;
         private System.Windows.Forms.DateTimePicker datetime;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label voucherid;
+        private System.Windows.Forms.DateTimePicker sdate;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.TextBox Company;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvsl;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvitem;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvmrp;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvsettledate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvsettleamount;
-        private System.Windows.Forms.DateTimePicker sdate;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
 

@@ -33,7 +33,7 @@ namespace Expiry_Management
             int sl = 1;
             while (reader.Read())
             {
-                dgv.Rows.Add(sl, reader.GetString(3), reader.GetDecimal(4), reader.GetInt64(5), reader.GetString(6), reader.GetDecimal(7));
+                dgv.Rows.Add(sl, reader.GetString(3), reader.GetDecimal(4), reader.GetInt64(5), reader.GetString(6), reader.GetDecimal(7), reader.GetString(9));
                 sl++;
             }
         }

@@ -80,7 +80,8 @@ namespace Expiry_Management
                      value = worksheet.Range["A" + rowindex].Value;
                      if (isitemname)
                      {
-                         command = "insert into itemlist select '" + value.Trim() + "' where not exists(select * from itemlist where name = '" + value.Trim() + "');";
+                         string company = worksheet.Range["B" + rowindex].Value;
+                         command = "insert into itemlist select '" + value.Trim()+","+ company.Trim()+ "' where not exists(select * from itemlist where name = '" + value.Trim() + "');";
                          cmd = new SQLiteCommand(command, con);
                          cmd.ExecuteNonQuery();
                      }

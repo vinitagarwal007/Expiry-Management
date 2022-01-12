@@ -33,6 +33,7 @@ namespace Expiry_Management
             comboBox1.Items.Add("Voucher Id");
             comboBox1.Items.Add("Amount");
             comboBox1.Items.Add("Item Name");
+            comboBox1.Items.Add("Company");
             con = new SQLiteConnection("Data Source = " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Expiry Management\\data.db");
             con.Open();
             //command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id having tsum != tsamt;";
@@ -95,21 +96,29 @@ namespace Expiry_Management
             {
                 itemnamesearchbox.Visible = false;
             }
+            if (comboBox1.SelectedIndex == 5)
+            {
+                companyname.Visible = true;
+            }
+            else
+            {
+                companyname.Visible = false;
+            }
             dataGridView1.Rows.Clear();
-            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id;";
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt from data group by id;";
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             int sl = 1;
             while (reader.Read())
             {
-                dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+                dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4));
             }
         }
 
         private void searchbox_TextChanged(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id;";
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt from data group by id;";
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             int sl = 1;
@@ -117,7 +126,7 @@ namespace Expiry_Management
             {
                 if (reader.GetString(1).Contains(partynamesearchbox.Text.Trim()))
                 {
-                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4));
                 }
             }
         }
@@ -134,15 +143,15 @@ namespace Expiry_Management
                 maxamt.Text = Convert.ToString(Convert.ToInt64(minamt.Text) + 100);
             }
             dataGridView1.Rows.Clear();
-            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id;";
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt from data group by id;";
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             int sl = 1;
             while (reader.Read())
             {
-                if (reader.GetInt32(5) >= Convert.ToInt64(minamt.Text.Trim()) & reader.GetInt32(5) <= Convert.ToInt64(maxamt.Text.Trim()))
+                if (reader.GetInt32(4) >= Convert.ToInt64(minamt.Text.Trim()) & reader.GetInt32(4) <= Convert.ToInt64(maxamt.Text.Trim()))
                 {
-                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4));
                 }
             }
         }
@@ -150,7 +159,7 @@ namespace Expiry_Management
         private void vouchersearch_TextChanged(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id;";
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt from data group by id;";
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             int sl = 1;
@@ -158,7 +167,7 @@ namespace Expiry_Management
             {
                 if (Convert.ToString(reader.GetInt32(0)).Contains(vouchersearch.Text.Trim()))
                 {
-                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4));
                 }
             }
         }
@@ -168,7 +177,7 @@ namespace Expiry_Management
             List<string> list = new List<string>();
             DateTime fdate = fromdate.Value;
             DateTime tdate = todate.Value;
-            if(tdate < fdate)
+            if (tdate < fdate)
             {
                 todate.Value = fromdate.Value;
             }
@@ -179,7 +188,7 @@ namespace Expiry_Management
 
 
             dataGridView1.Rows.Clear();
-            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data group by id;";
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt from data group by id;";
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             int sl = 1;
@@ -187,10 +196,9 @@ namespace Expiry_Management
             {
                 if (list.Contains(reader.GetString(2)))
                 {
-                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+                    dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4));
                 }
             }
-
         }
 
         private void maxamt_KeyPress(object sender, KeyPressEventArgs e)
@@ -250,7 +258,9 @@ namespace Expiry_Management
                 range.Value = "Settle Date";
                 range = worksheet.Range["G" + (excelindex), "G" + (excelindex)];
                 range.Value = "Settle Amount";
-                range = worksheet.Range["A" + (excelindex - 3), "G" + excelindex];
+                range = worksheet.Range["H" + (excelindex), "H" + (excelindex)];
+                range.Value = "Settle Amount";
+                range = worksheet.Range["A" + (excelindex - 3), "H" + excelindex];
                 range.Interior.Color = ColorTranslator.FromHtml("#90c3f5");
                 range.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
                 range.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -278,14 +288,16 @@ namespace Expiry_Management
                     range.Value = reader.GetValue(6);
                     range = worksheet.Range["G" + (excelindex), "G" + (excelindex)];
                     range.Value = reader.GetValue(7);
+                    range = worksheet.Range["H" + (excelindex), "H" + (excelindex)];
+                    range.Value = reader.GetValue(9);
                     slno += 1;
                     excelindex += 1;
                 }
-                range = worksheet.Range["A" + temp, "G" + (excelindex-1)];
+                range = worksheet.Range["A" + temp, "H" + (excelindex-1)];
                 range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 excelindex += 2;
             }
-            range = worksheet.Range["A1", "G" + (excelindex)];
+            range = worksheet.Range["A1", "H" + (excelindex)];
             range.Columns.AutoFit();
             exapp.Visible = true;
 
@@ -300,13 +312,13 @@ namespace Expiry_Management
         private void itemnamesearchbox_TextChanged(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt,sum(qty*mrp) - sum(samt) from data where itemname like '%" + itemnamesearchbox.Text.Trim() + "%' group by id;";
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) as tsamt from data where itemname like '%" + itemnamesearchbox.Text.Trim() + "%' group by id;";
             cmd = new SQLiteCommand(command, con);
             reader = cmd.ExecuteReader();
             int sl = 1;
             while (reader.Read())
             {
-                dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5));
+                dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4));
             }
         }
 
@@ -315,6 +327,19 @@ namespace Expiry_Management
             reportdialog reportdialog = new reportdialog();
             reportdialog.sharedvoucherid = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
             reportdialog.ShowDialog();
+        }
+
+        private void companyname_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            command = "select id,partyname,date,sum(qty*mrp) as tsum,sum(samt) from data where company like '%" + companyname.Text.Trim() + "%' group by id ;";
+            cmd = new SQLiteCommand(command, con);
+            reader = cmd.ExecuteReader();
+            int sl = 1;
+            while (reader.Read())
+            {
+                dataGridView1.Rows.Add(Convert.ToString(sl), Convert.ToString(reader.GetInt32(0)), reader.GetString(1), reader.GetString(2), reader.GetValue(3), reader.GetValue(4));
+            }
         }
     }
 }

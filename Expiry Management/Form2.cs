@@ -52,10 +52,12 @@ namespace Expiry_Management
                                 qty       INTEGER(100),
                                 sdate     TEXT(100),
                                 samt      DECIMAL(100),
-                                slno      TEXT(100) NOT NULL PRIMARY KEY
+                                slno      TEXT(100) NOT NULL PRIMARY KEY,
+                                company TEXT(100)
                                 );
                                 CREATE TABLE itemlist(
-                                name TEXT(100)
+                                name TEXT(100),
+                                company TEXT(100)
                                 );
                                 CREATE TABLE partylist(
                                 name TEXT(100) 

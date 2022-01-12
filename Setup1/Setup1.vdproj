@@ -153,14 +153,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_487D8D990D9BA72AEC133D48208BB3B0"
-        "OwnerKey" = "8:_69F5CCA43CF2475E90B414FA936B021B"
+        "MsmKey" = "8:_3F1F8101DDC343D3A58DA837E1F6F4F8"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_48DD4BD20EFB4711832B5798CCEE543E"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_487D8D990D9BA72AEC133D48208BB3B0"
+        "OwnerKey" = "8:_69F5CCA43CF2475E90B414FA936B021B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -677,12 +677,6 @@
         {
         "MsmKey" = "8:_E3A71AE623BD1DDA6A29308649EEDE77"
         "OwnerKey" = "8:_69F5CCA43CF2475E90B414FA936B021B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E7A51AAEB219438CBA11214A3FFE1926"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1522,6 +1516,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -2265,6 +2267,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F1F8101DDC343D3A58DA837E1F6F4F8"
+            {
+            "SourcePath" = "8:..\\data.db"
+            "TargetName" = "8:data.db"
+            "Tag" = "8:"
+            "Folder" = "8:_A3A67E859BB64A1780FB5A822A3D7BFF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_487D8D990D9BA72AEC133D48208BB3B0"
             {
             "AssemblyRegister" = "3:1"
@@ -2294,26 +2316,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_48DD4BD20EFB4711832B5798CCEE543E"
-            {
-            "SourcePath" = "8:..\\..\\..\\data.db"
-            "TargetName" = "8:data.db"
-            "Tag" = "8:"
-            "Folder" = "8:_A3A67E859BB64A1780FB5A822A3D7BFF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4A3F1850485335F3DD25A8D279764E69"
@@ -4723,26 +4725,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E7A51AAEB219438CBA11214A3FFE1926"
-            {
-            "SourcePath" = "8:..\\..\\..\\data.db"
-            "TargetName" = "8:data.db"
-            "Tag" = "8:"
-            "Folder" = "8:_A3A67E859BB64A1780FB5A822A3D7BFF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:TRUE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EB02F0DD45A640FB530FB52C897DBD1D"
             {
             "AssemblyRegister" = "3:1"
@@ -5287,7 +5269,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Expiry Management"
         "ProductCode" = "8:{EA46F65A-C5EC-4E94-BC40-038CCA6DCB1A}"
-        "PackageCode" = "8:{98EBE3A1-1153-4C72-9162-D9D04DDBC659}"
+        "PackageCode" = "8:{6898F73B-7F46-445B-A9C7-11A51D409342}"
         "UpgradeCode" = "8:{3CB0D76C-0FAA-40B1-8B1A-15186BDBCC95}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
